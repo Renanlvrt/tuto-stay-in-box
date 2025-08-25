@@ -26,7 +26,8 @@ basic.forever(function on_forever() {
     
     current_surface_reading = pins.analogReadPin(AnalogReadWritePin.P1)
     serial.writeLine("" + ("" + current_surface_reading))
-    if (current_surface_reading >= black_line - 100) {
+    // if encounter color set
+    if (current_surface_reading < black_line - 70 || current_surface_reading > black_line + 70) {
         motobit.enable(MotorPower.On)
         motobit.setMotorSpeed(Motor.Left, MotorDirection.Reverse, 40)
         motobit.setMotorSpeed(Motor.Right, MotorDirection.Reverse, 40)

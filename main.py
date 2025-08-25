@@ -14,8 +14,8 @@ input.on_button_pressed(Button.A, on_button_pressed_a)
 current_surface_reading = 0
 black_line = 0
 serial.redirect_to_usb()
-motobit.invert(Motor.LEFT, True)
-motobit.invert(Motor.RIGHT, True)
+motobit.invert(Motor.LEFT, False)
+motobit.invert(Motor.RIGHT, False)
 black_line = pins.analog_read_pin(AnalogReadWritePin.P1)
 serial.write_string("black_line_(i.e._Baseline_Value_of_Line_Following_Sensor_on_P1)=")
 serial.write_line("" + str((black_line)))
@@ -37,7 +37,7 @@ def on_forever():
     current_surface_reading = pins.analog_read_pin(AnalogReadWritePin.P1)
     serial.write_line("" + str((current_surface_reading)))
     #if encounter color set
-    if current_surface_reading < black_line - 70 or current_surface_reading > black_line + 70:
+    if current_surface_reading < black_line - 100 or current_surface_reading > black_line + 100:
         motobit.enable(MotorPower.ON)
         motobit.set_motor_speed(Motor.LEFT, MotorDirection.REVERSE, 40)
         motobit.set_motor_speed(Motor.RIGHT, MotorDirection.REVERSE, 40)

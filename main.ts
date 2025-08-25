@@ -8,8 +8,8 @@ input.onButtonPressed(Button.A, function on_button_pressed_a() {
 let current_surface_reading = 0
 let black_line = 0
 serial.redirectToUSB()
-motobit.invert(Motor.Left, true)
-motobit.invert(Motor.Right, true)
+motobit.invert(Motor.Left, false)
+motobit.invert(Motor.Right, false)
 black_line = pins.analogReadPin(AnalogReadWritePin.P1)
 serial.writeString("black_line_(i.e._Baseline_Value_of_Line_Following_Sensor_on_P1)=")
 serial.writeLine("" + ("" + black_line))
@@ -27,7 +27,7 @@ basic.forever(function on_forever() {
     current_surface_reading = pins.analogReadPin(AnalogReadWritePin.P1)
     serial.writeLine("" + ("" + current_surface_reading))
     // if encounter color set
-    if (current_surface_reading < black_line - 70 || current_surface_reading > black_line + 70) {
+    if (current_surface_reading < black_line - 100 || current_surface_reading > black_line + 100) {
         motobit.enable(MotorPower.On)
         motobit.setMotorSpeed(Motor.Left, MotorDirection.Reverse, 40)
         motobit.setMotorSpeed(Motor.Right, MotorDirection.Reverse, 40)

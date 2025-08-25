@@ -39,8 +39,8 @@ def on_forever():
     #if encounter color set
     if current_surface_reading < black_line - 100 or current_surface_reading > black_line + 100:
         motobit.enable(MotorPower.ON)
-        motobit.set_motor_speed(Motor.LEFT, MotorDirection.REVERSE, 40)
-        motobit.set_motor_speed(Motor.RIGHT, MotorDirection.REVERSE, 40)
+        motobit.set_motor_speed(Motor.LEFT, MotorDirection.REVERSE, 60)
+        motobit.set_motor_speed(Motor.RIGHT, MotorDirection.REVERSE, 60)
         basic.show_leds("""
             . # . # .
             . # # # .
@@ -48,7 +48,7 @@ def on_forever():
             . # # # .
             . . # . .
             """)
-        basic.pause(10)
+        basic.pause(15)
         motobit.set_motor_speed(Motor.LEFT, MotorDirection.REVERSE, 30)
         motobit.set_motor_speed(Motor.RIGHT, MotorDirection.FORWARD, 40)
         basic.show_leds("""
@@ -59,11 +59,11 @@ def on_forever():
             . . # . .
             """)
         basic.pause(5)
-        motobit.enable(MotorPower.OFF)
+        #motobit.enable(MotorPower.OFF)
     else:
         motobit.enable(MotorPower.ON)
-        motobit.set_motor_speed(Motor.LEFT, MotorDirection.FORWARD, 40)
-        motobit.set_motor_speed(Motor.RIGHT, MotorDirection.FORWARD, 40)
+        motobit.set_motor_speed(Motor.LEFT, MotorDirection.FORWARD, 70)
+        motobit.set_motor_speed(Motor.RIGHT, MotorDirection.FORWARD, 70)
         basic.show_leds("""
             . . # . .
             . # # # .
@@ -72,5 +72,5 @@ def on_forever():
             . . # . .
             """)
         basic.pause(5)
-        motobit.enable(MotorPower.OFF)
+        #motobit.enable(MotorPower.OFF)
 basic.forever(on_forever)

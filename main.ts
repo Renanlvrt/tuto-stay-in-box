@@ -22,6 +22,7 @@ It takes a few more seconds for the micro:bit to react when using the LED array 
 
  */
 /** Note: This part of the code drives the micro:bot forward slowly if we do not see a black line. */
+// motobit.enable(MotorPower.OFF)
 basic.forever(function on_forever() {
     
     current_surface_reading = pins.analogReadPin(AnalogReadWritePin.P1)
@@ -29,8 +30,8 @@ basic.forever(function on_forever() {
     // if encounter color set
     if (current_surface_reading < black_line - 100 || current_surface_reading > black_line + 100) {
         motobit.enable(MotorPower.On)
-        motobit.setMotorSpeed(Motor.Left, MotorDirection.Reverse, 40)
-        motobit.setMotorSpeed(Motor.Right, MotorDirection.Reverse, 40)
+        motobit.setMotorSpeed(Motor.Left, MotorDirection.Reverse, 60)
+        motobit.setMotorSpeed(Motor.Right, MotorDirection.Reverse, 60)
         basic.showLeds(`
             . # . # .
             . # # # .
@@ -38,7 +39,7 @@ basic.forever(function on_forever() {
             . # # # .
             . . # . .
             `)
-        basic.pause(10)
+        basic.pause(15)
         motobit.setMotorSpeed(Motor.Left, MotorDirection.Reverse, 30)
         motobit.setMotorSpeed(Motor.Right, MotorDirection.Forward, 40)
         basic.showLeds(`
@@ -49,11 +50,11 @@ basic.forever(function on_forever() {
             . . # . .
             `)
         basic.pause(5)
-        motobit.enable(MotorPower.Off)
     } else {
+        // motobit.enable(MotorPower.OFF)
         motobit.enable(MotorPower.On)
-        motobit.setMotorSpeed(Motor.Left, MotorDirection.Forward, 40)
-        motobit.setMotorSpeed(Motor.Right, MotorDirection.Forward, 40)
+        motobit.setMotorSpeed(Motor.Left, MotorDirection.Forward, 70)
+        motobit.setMotorSpeed(Motor.Right, MotorDirection.Forward, 70)
         basic.showLeds(`
             . . # . .
             . # # # .
@@ -62,7 +63,6 @@ basic.forever(function on_forever() {
             . . # . .
             `)
         basic.pause(5)
-        motobit.enable(MotorPower.Off)
     }
     
 })

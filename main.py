@@ -36,8 +36,9 @@ def on_forever():
     global current_surface_reading
     current_surface_reading = pins.analog_read_pin(AnalogReadWritePin.P1)
     serial.write_line("" + str((current_surface_reading)))
-    #if encounter color set
-    if current_surface_reading < black_line - 100 or current_surface_reading > black_line + 100:
+    #if encounter color set (now not white)
+    #if current_surface_reading < black_line - 100 or current_surface_reading > black_line + 100:
+    if current_surface_reading < 100 or current_surface_reading > 530:
         motobit.enable(MotorPower.ON)
         motobit.set_motor_speed(Motor.LEFT, MotorDirection.REVERSE, 60)
         motobit.set_motor_speed(Motor.RIGHT, MotorDirection.REVERSE, 60)
